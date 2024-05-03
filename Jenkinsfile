@@ -71,6 +71,20 @@ pipeline {
 
         }
         }
+    post {
+        success {
+            emailext subject: "Pipeline Successful",
+                      body: " Jenkins pipeline has completed successfully.",
+                      to: "hariau98@gmail.com",
+                      attachmentsPattern: 'builds/*/log'
+        }
+        failure {
+            emailext subject: "Pipeline Failed",
+                      body: "Your Jenkins pipeline has failed.",
+                      to: "hariau98@gmail.com",
+                      attachmentsPattern: 'builds/*/log'
+        }
+    }
         
     
    
