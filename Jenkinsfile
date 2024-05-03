@@ -73,10 +73,13 @@ pipeline {
         }
     post {
         success {
+            script {
+                archiveArtifacts artifacts: '*/console.log', allowEmptyArchive: true
             emailext subject: "Pipeline Successful",
                       body: " Jenkins pipeline has completed successfully.",
                       to: "hariau98@gmail.com",
-                      attachmentsPattern: 'builds/*/log'
+                      attachmentsPattern: '*/console.log'
+            }
         }
         failure {
             emailext subject: "Pipeline Failed",
