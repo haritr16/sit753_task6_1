@@ -39,13 +39,13 @@ pipeline {
                 success {
                 mail to: "hariau98@gmail.com",
                 subject: "Pipeline Successful",
-                body: "Successfully deployed to production."
+                body: "Successfully completed security scan"
            
             }
                 failure {
                 mail to: "hariau98@gmail.com",
                 subject: "Pipeline Unsuccessful",
-                body: "Deloyment failed"
+                body: "Security scan failed!!"
            
             }
             }
