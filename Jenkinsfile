@@ -78,10 +78,18 @@ pipeline {
 
              script {
                 def consoleLogUrl = "${env.BUILD_URL}/consoleText"
-                def consoleLogContent = sh(script: "curl -s ${consoleLogUrl}", returnStdout: true)
+                def consoleLogContent = ""
+                
+                // Check if running on Windows
+                if (isUnix()) {
+                    consoleLogContent = sh(script: "curl -s ${consoleLogUrl}", returnStdout: true).trim()
+                } else {
+                    consoleLogContent = bat(script: "powershell -command \"(Invoke-WebRequest -Uri '${consoleLogUrl}').Content\"", returnStdout: true).trim()
+                }
+
                 writeFile file: "console.log", text: consoleLogContent
                 emailext subject: currentBuild.result == 'SUCCESS' ? "Pipeline Successful" : "Pipeline Failed",
-                          body: currentBuild.result == 'SUCCESS' ? "Jenkins pipeline has completed successfully." : "Jenkins pipeline has failed.",
+                          body: currentBuild.result == 'SUCCESS' ? "Your Jenkins pipeline has completed successfully." : "Your Jenkins pipeline has failed.",
                           to: "hariau98@gmail.com",
                           attachments: [
                               file: "console.log",
