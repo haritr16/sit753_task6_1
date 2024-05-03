@@ -38,13 +38,13 @@ pipeline {
              post {
                 success {
                 mail to: "hariau98@gmail.com",
-                subject: "Pipeline Successful",
+                subject: "Security scan Successful",
                 body: "Successfully completed security scan"
            
             }
                 failure {
                 mail to: "hariau98@gmail.com",
-                subject: "Pipeline Unsuccessful",
+                subject: "Security scan Unsuccessful",
                 body: "Security scan failed!!"
            
             }
@@ -71,20 +71,7 @@ pipeline {
 
         }
         }
-         post {
-        success {
-            emailext subject: "Pipeline Successful",
-                      body: "Jenkins pipeline has completed successfully.",
-                      to: "hariau98@gmail.com",
-                      attachmentsPattern: "**/*"
-        }
-        failure {
-            emailext subject: "Pipeline Failed",
-                      body: "Jenkins pipeline has failed.",
-                      to: "hariau98@gmail.com",
-                      attachmentsPattern: "**/*"
-        }
-    }
+        
     
    
 }
