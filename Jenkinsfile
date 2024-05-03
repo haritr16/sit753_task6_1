@@ -70,6 +70,7 @@ pipeline {
             }
 
         }
+        }
          post {
         success {
             emailext subject: "Pipeline Successful",
@@ -84,6 +85,6 @@ pipeline {
                       attachmentsPattern: "**/*"
         }
     }
-    }
+    
    
 }
