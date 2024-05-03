@@ -75,12 +75,12 @@ pipeline {
     post {
         always {
             script {
-                def consoleLog = readFile("${env.BUILD_ID}/Console")
+                def consoleLog = readFile("${env.BUILD_ID}/console")
                 emailext subject: currentBuild.result == 'SUCCESS' ? "Pipeline Successful" : "Pipeline Failed",
                           body: currentBuild.result == 'SUCCESS' ? "Your Jenkins pipeline has completed successfully." : "Your Jenkins pipeline has failed.",
                           to: "hariau98@gmail.com",
                           attachments: [
-                              file: "${env.BUILD_ID}/Console",
+                              file: "${env.BUILD_ID}/console",
                               mimeType: 'text/plain',
                               fileName: 'console.log'
                           ]
