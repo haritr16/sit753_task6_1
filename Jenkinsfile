@@ -71,21 +71,20 @@ pipeline {
 
         }
         }
+
     post {
-        success {
+        always {
             script {
-                archiveArtifacts artifacts: '*/consoleText', allowEmptyArchive: true
-            emailext subject: "Pipeline Successful",
-                      body: " Jenkins pipeline has completed successfully.",
-                      to: "hariau98@gmail.com",
-                      attachmentsPattern: '*/consoleText'
+                def consoleLog = readFile("${env.BUILD_ID}/log")
+                emailext subject: currentBuild.result == 'SUCCESS' ? "Pipeline Successful" : "Pipeline Failed",
+                          body: currentBuild.result == 'SUCCESS' ? "Your Jenkins pipeline has completed successfully." : "Your Jenkins pipeline has failed.",
+                          to: "hariau98@gmail.com",
+                          attachments: [
+                              file: "${env.BUILD_ID}/log",
+                              mimeType: 'text/plain',
+                              fileName: 'console.log'
+                          ]
             }
-        }
-        failure {
-            emailext subject: "Pipeline Failed",
-                      body: "Your Jenkins pipeline has failed.",
-                      to: "hariau98@gmail.com",
-                      attachmentsPattern: 'builds/*/log'
         }
     }
         
