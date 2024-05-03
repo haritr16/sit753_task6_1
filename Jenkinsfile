@@ -80,7 +80,7 @@ pipeline {
                           body: currentBuild.result == 'SUCCESS' ? "Your Jenkins pipeline has completed successfully." : "Your Jenkins pipeline has failed.",
                           to: "hariau98@gmail.com",
                           attachments: [
-                              file: "${env.BUILD_ID}/log",
+                              file: "${env.BUILD_ID}/Console",
                               mimeType: 'text/plain',
                               fileName: 'console.log'
                           ]
