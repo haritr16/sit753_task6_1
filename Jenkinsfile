@@ -73,13 +73,16 @@ pipeline {
         }
 
     post {
-        script {
+        always {
+            script {
                 def consoleLogUrl = "${env.BUILD_URL}/consoleText"
                 emailext subject: currentBuild.result == 'SUCCESS' ? "Pipeline Successful" : "Pipeline Failed",
-                          body: currentBuild.result == 'SUCCESS' ? "Jenkins pipeline has completed successfully.\nConsole Log: ${consoleLogUrl}" : "Jenkins pipeline has failed.\nConsole Log: ${consoleLogUrl}",
+                          body: currentBuild.result == 'SUCCESS' ? "Your Jenkins pipeline has completed successfully.\nConsole Log: ${consoleLogUrl}" : "Your Jenkins pipeline has failed.\nConsole Log: ${consoleLogUrl}",
                           to: "hariau98@gmail.com"
             }
-
+        }
+        
+        
         
     }
         
