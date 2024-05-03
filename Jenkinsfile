@@ -8,7 +8,8 @@ pipeline {
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Run unit tests'
+                echo 'Run unit tests using junit'
+                echo 'Run unit tests using Mocha'
                 echo 'Running integration tests using selenium'
             }
         }
