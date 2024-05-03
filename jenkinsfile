@@ -9,7 +9,7 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Run unit tests'
-                echo 'Running integration tests'
+                echo 'Running integration tests using selenium'
             }
         }
         stage('Code Analysis') {
