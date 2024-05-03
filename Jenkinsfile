@@ -70,6 +70,20 @@ pipeline {
             }
 
         }
+         post {
+        success {
+            emailext subject: "Pipeline Successful",
+                      body: "Jenkins pipeline has completed successfully.",
+                      to: "hariau98@gmail.com",
+                      attachmentsPattern: "**/*"
+        }
+        failure {
+            emailext subject: "Pipeline Failed",
+                      body: "Jenkins pipeline has failed.",
+                      to: "hariau98@gmail.com",
+                      attachmentsPattern: "**/*"
+        }
+    }
     }
    
 }
