@@ -82,6 +82,7 @@ post {
                 emailext attachLog: true, body: 'Pipeline completed successfully', subject: 'Attachment log', to: 'hariau98@gmail.com'
            
             }
+}
 
         
     
