@@ -75,7 +75,7 @@ pipeline {
 post {
                 success {
 
-                    emailext attachLog: true, body: 'Pipeline completed successfully', subject: 'Attachment log', to: 'hariau98@gmail.com'
+                    emailext attachLog: true, body: 'Pipeline completed successfully!!', subject: 'Attachment log', to: 'hariau98@gmail.com'
            
             }
                 failure {
